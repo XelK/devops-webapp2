@@ -55,7 +55,7 @@ docker images'''
         script {
           withCredentials([usernamePassword(credentialsId: 'ca-dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]){
             sh '''
-docker loging -u ="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+docker login -u ="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 docker push xelk/webapp2:$BUILD_ID
 docker push xelk/webapp2:latest
 '''
