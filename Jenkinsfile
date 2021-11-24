@@ -22,8 +22,7 @@ date
 echo $PATH
 pwd
 ls -la
-./gradlew build
---info'''
+./gradlew build --info
       }
     }
 
