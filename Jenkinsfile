@@ -27,7 +27,8 @@ pipeline {
 
         stage('P1') {
           steps {
-            sh 'date echo run parallel!'
+            sh '''date 
+                echo run parallel!'''
           }
         }
 
