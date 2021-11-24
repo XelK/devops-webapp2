@@ -44,7 +44,7 @@ cp ./build/libs/$RELEASE ./docker'''
       steps {
         sh '''pwd
 cd ./docker
-docker build -t xelk/webapp2:$BUILD_ID
+docker build -t xelk/webapp2:$BUILD_ID .
 docker tag xelk/webapp2:$BUILD_ID xelk/webapp2:latest
 docker images'''
       }
