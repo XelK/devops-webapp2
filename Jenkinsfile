@@ -15,14 +15,11 @@ pipeline {
     stage('Build') {
       steps {
         sh '''whoami
-
-
-
-date
-echo $PATH
-pwd
-ls -la
-./gradlew build --info
+              date
+              echo $PATH
+              pwd
+              ls -la
+              ./gradlew build --info'''
       }
     }
 
