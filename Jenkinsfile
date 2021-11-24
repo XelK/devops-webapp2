@@ -16,12 +16,11 @@ pipeline {
       parallel {
         stage('Build') {
           steps {
-            sh '''whoami
-              date
-              echo $PATH
-              pwd
-              ls -la
-              ./gradlew build --info'''
+            sh '''RELEASE=webapp.war
+pwd
+./gradlew build -PwarName=$RELEASE --info
+ls -la build/libs/
+cp ./build/libs/$RELEASE ./docker'''
           }
         }
 
@@ -41,9 +40,22 @@ pipeline {
       }
     }
 
+    stage('Packaging') {
+      steps {
+        sh '''pwd
+cd ./docker
+docker build -t xelk/webapp2:$BUILD_ID
+docker tag xelk/webapp2:$BUILD_ID xelk/webapp2:latest
+docker images'''
+      }
+    }
+
     stage('Publish') {
       steps {
-        archiveArtifacts(artifacts: 'build/libs/*.war', fingerprint: true, onlyIfSuccessful: true)
+        script {
+          echo Publish
+        }
+
       }
     }
 
